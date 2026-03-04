@@ -44,12 +44,4 @@ model = fasttext_rs.load_model("model.bin")
 
 ```bash
 make           # Show all commands
-make build     # Build in release mode
-make dev       # Build in debug mode
-make test      # Run tests
-make bench     # Run performance benchmarks
-make data      # Download test data
-make format    # Format Rust and Python code
-make lint      # Lint Rust and Python code
-make clean     # Clean build artifacts
 ```
