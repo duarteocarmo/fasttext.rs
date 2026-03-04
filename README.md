@@ -1,4 +1,9 @@
-<p align="center"><img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="700"></p>
+<p align="center">
+<img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="700">
+<br>
+<a href="https://pypi.org/project/fasttext-rs/"><img src="https://img.shields.io/pypi/v/fasttext-rs" alt="PyPI"></a>
+<a href="https://github.com/duarteocarmo/fasttext.rs/actions/workflows/ci.yml"><img src="https://github.com/duarteocarmo/fasttext.rs/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+</p>
 
 > [!WARNING]
 > This was completely AI-generated. Running on a ralph wiggum loop to see what was possible. I HAVE NOT checked the code.
@@ -6,6 +11,31 @@
 # fasttext.rs
 
 A Rust-backed Python implementation of Facebook's [fastText](https://github.com/facebookresearch/fastText).
+
+## Installation
+
+```bash
+pip install fasttext-rs
+```
+
+## Quick start
+
+```python
+import fasttext_rs
+
+# Train
+model = fasttext_rs.train_supervised(input="cooking.train", epoch=25, lr=1.0, word_ngrams=2)
+
+# Predict
+labels, probs = model.predict("Which baking dish is best?")
+
+# Vectors
+vec = model.get_word_vector("hello")
+
+# Save / Load
+model.save_model("model.bin")
+model = fasttext_rs.load_model("model.bin")
+```
 
 ## Performance
 
@@ -19,31 +49,6 @@ Benchmarked on the [cooking.stackexchange](https://fasttext.cc/docs/en/supervise
 | Recall@1 | 0.0590 | 0.0703 | — |
 
 Run `make bench` to reproduce.
-
-## Installation
-
-```bash
-uv pip install -e .
-```
-
-## Quick start
-
-```python
-import fasttext_rs
-
-# Train
-model = fasttext_rs.train_supervised(input="data/cooking.train", epoch=25, lr=1.0, word_ngrams=2)
-
-# Predict
-labels, probs = model.predict("Which baking dish is best?")
-
-# Vectors
-vec = model.get_word_vector("hello")
-
-# Save / Load
-model.save_model("model.bin")
-model = fasttext_rs.load_model("model.bin")
-```
 
 ## Development
 
