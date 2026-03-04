@@ -1,0 +1,14 @@
+/target
+/dist
+*.egg-info
+__pycache__
+*.pyc
+.pytest_cache
+/data
+*.bin
+*.so
+*.dylib
+.venv
+.DS_Store
+.ralph/
+*.dSYM/

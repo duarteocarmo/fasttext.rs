@@ -1,0 +1,22 @@
+#[derive(Debug, Clone)]
+pub struct Args {
+    pub input: String,
+    pub lr: f64,
+    pub dim: usize,
+    pub ws: usize,
+    pub epoch: usize,
+    pub min_count: u32,
+    pub min_count_label: u32,
+    pub minn: usize,
+    pub maxn: usize,
+    pub neg: usize,
+    pub word_ngrams: usize,
+    pub loss: String,
+    pub bucket: usize,
+    pub thread: usize,
+    pub lr_update_rate: usize,
+    pub t: f64,
+    pub verbose: u32,
+    pub model: String,
+    pub label_prefix: String,
+}
