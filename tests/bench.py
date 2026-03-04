@@ -36,39 +36,52 @@ def main():
     print(f"  valid: {VALID_FILE}")
     print(f"{'═' * 56}")
 
+    # --- Training ---
     ft_train_times = []
     rs_train_times = []
 
     for i in range(WARMUP + ROUNDS):
         t0 = time.perf_counter()
         ft_model = fasttext.train_supervised(input=TRAIN_FILE, thread=1, verbose=0)
-        ft_elapsed = time.perf_counter() - t0
+        ft_train_times.append(time.perf_counter() - t0)
 
         t0 = time.perf_counter()
         rs_model = fasttext_rs.train_supervised(input=TRAIN_FILE, verbose=0)
-        rs_elapsed = time.perf_counter() - t0
+        rs_train_times.append(time.perf_counter() - t0)
 
-        if i >= WARMUP:
-            ft_train_times.append(ft_elapsed)
-            rs_train_times.append(rs_elapsed)
+    ft_train_med = statistics.median(ft_train_times[WARMUP:])
+    rs_train_med = statistics.median(rs_train_times[WARMUP:])
 
-    ft_n, ft_p, ft_r = ft_model.test(VALID_FILE, k=1)
-    rs_n, rs_p, rs_r = rs_model.test(VALID_FILE, k=1)
+    # --- Inference (model.test) ---
+    ft_test_times = []
+    rs_test_times = []
 
-    ft_train_med = statistics.median(ft_train_times)
-    rs_train_med = statistics.median(rs_train_times)
-    train_speedup = ft_train_med / rs_train_med
+    for i in range(WARMUP + ROUNDS):
+        t0 = time.perf_counter()
+        ft_n, ft_p, ft_r = ft_model.test(VALID_FILE, k=1)
+        ft_test_times.append(time.perf_counter() - t0)
 
+        t0 = time.perf_counter()
+        rs_n, rs_p, rs_r = rs_model.test(VALID_FILE, k=1)
+        rs_test_times.append(time.perf_counter() - t0)
+
+    ft_test_med = statistics.median(ft_test_times[WARMUP:])
+    rs_test_med = statistics.median(rs_test_times[WARMUP:])
+
+    # --- Results ---
     print()
     print(f"  | {'Task':<30} | {'C++':>10} | {'Rust':>10} | {'Speedup':>8} |")
     print(f"  |{'-' * 32}|{'-' * 12}|{'-' * 12}|{'-' * 10}|")
     print(
         f"  | {'Training (5 epochs)':<30} | {ft_train_med:>9.3f}s |"
-        f" {rs_train_med:>9.3f}s | {train_speedup:>6.2f}x  |"
+        f" {rs_train_med:>9.3f}s | {ft_train_med / rs_train_med:>6.2f}x  |"
+    )
+    print(
+        f"  | {'Inference (3000 samples)':<30} | {ft_test_med:>9.3f}s |"
+        f" {rs_test_med:>9.3f}s | {ft_test_med / rs_test_med:>6.2f}x  |"
     )
     print(f"  | {'Precision@1':<30} | {ft_p:>10.4f} | {rs_p:>10.4f} | {'—':>8} |")
     print(f"  | {'Recall@1':<30} | {ft_r:>10.4f} | {rs_r:>10.4f} | {'—':>8} |")
-    print(f"  | {'Samples (N)':<30} | {ft_n:>10} | {rs_n:>10} | {'—':>8} |")
 
     print(f"\n{'═' * 56}")
 

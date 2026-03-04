@@ -11,7 +11,8 @@ Benchmarked on the [cooking.stackexchange](https://fasttext.cc/docs/en/supervise
 
 | Task | fasttext (C++) | fasttext.rs (Rust) | Speedup |
 |---|--:|--:|--:|
-| Training (5 epochs) | 13.072s | 6.572s | **1.99x** |
+| Training (5 epochs) | 12.633s | 6.406s | **1.97x** |
+| Inference (3000 samples) | 0.443s | 0.218s | **2.03x** |
 | Precision@1 | 0.1363 | 0.1543 | — |
 | Recall@1 | 0.0590 | 0.0703 | — |
 
