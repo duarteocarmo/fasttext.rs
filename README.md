@@ -15,7 +15,9 @@ A Rust-backed Python implementation of Facebook's [fastText](https://github.com/
 ## Installation
 
 ```bash
-pip install fasttext-rs
+uv add fasttext-rs
+# or
+uv pip install fasttext-rs
 ```
 
 ## Quick start
