@@ -42,7 +42,9 @@ with tempfile.TemporaryDirectory() as tmp:
     with open(test_path, "w") as f:
         f.write(TEST_DATA)
 
-    model = fasttext_rs.train_supervised(input=train_path, epoch=25, lr=1.0, dim=10, verbose=0)
+    model = fasttext_rs.train_supervised(
+        input=train_path, epoch=25, lr=1.0, dim=10, verbose=0
+    )
 
     print(f"words: {len(model.words)}, labels: {len(model.labels)}, dim: {model.dim}")
 

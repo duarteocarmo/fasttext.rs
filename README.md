@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="300">
+</p>
+
 > [!WARNING]
 > This was completely AI-generated. Running on a ralph wiggum loop to see what was possible. I HAVE NOT checked the code.
 
