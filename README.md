@@ -1,3 +1,6 @@
+> [!WARNING]
+> This was completely AI-generated. Running on a ralph wiggum loop to see what was possible. I HAVE NOT checked the code.
+
 # fasttext.rs
 
 A Rust-backed Python implementation of Facebook's [fastText](https://github.com/facebookresearch/fastText).
