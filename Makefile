@@ -43,6 +43,10 @@ data: # Download test data (cooking.stackexchange)
 	head -n 12404 data/cooking.stackexchange.txt > data/cooking.train
 	tail -n 3000 data/cooking.stackexchange.txt > data/cooking.valid
 
+.PHONY: bench
+bench: build # Run performance benchmarks
+	uv run python tests/bench.py
+
 .PHONY: clean
 clean: # Clean build artifacts
 	cargo clean
