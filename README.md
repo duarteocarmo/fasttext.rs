@@ -1,5 +1,5 @@
 <p align="center">
-<img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="700">
+<img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="500">
 <br>
 <a href="https://pypi.org/project/fasttext-rs/"><img src="https://img.shields.io/pypi/v/fasttext-rs" alt="PyPI"></a>
 <a href="https://github.com/duarteocarmo/fasttext.rs/actions/workflows/ci.yml"><img src="https://github.com/duarteocarmo/fasttext.rs/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
