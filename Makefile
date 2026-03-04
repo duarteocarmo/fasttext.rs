@@ -53,3 +53,5 @@ clean: # Clean build artifacts
 	@rm -rf target/ dist/ *.egg-info
 	@rm -rf .pytest_cache **/.pytest_cache
 	@rm -rf __pycache__ **/__pycache__
+	@rm -rf .ipynb_checkpoints **/.ipynb_checkpoints
+	@rm -rf build
