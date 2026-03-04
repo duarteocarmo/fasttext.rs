@@ -365,6 +365,9 @@ impl FastText {
     }
 
     pub fn get_subword_id(&self, subword: &str) -> usize {
+        if self.dict.bucket == 0 {
+            return 0;
+        }
         let h = crate::utils::hash(subword) as usize % self.dict.bucket;
         self.dict.nwords + h
     }

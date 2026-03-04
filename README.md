@@ -7,13 +7,13 @@ A Rust-backed Python implementation of Facebook's [fastText](https://github.com/
 
 ## Performance
 
-Benchmarked on the [cooking.stackexchange](https://fasttext.cc/docs/en/supervised-tutorial.html) dataset (12k training, 3k validation). Median of 5 runs, Apple M3 Pro.
+Benchmarked on the [cooking.stackexchange](https://fasttext.cc/docs/en/supervised-tutorial.html) dataset (12k training, 3k validation) with default parameters, single-threaded. Median of 5 runs, Apple M3 Pro.
 
 | Task | fasttext (C++) | fasttext.rs (Rust) | Speedup |
 |---|--:|--:|--:|
-| Training (5 epochs) | 7.856s | 6.442s | **1.22x** |
-| Precision@1 | 0.4647 | 0.4793 | — |
-| Recall@1 | 0.2010 | 0.2367 | — |
+| Training (5 epochs) | 13.072s | 6.572s | **1.99x** |
+| Precision@1 | 0.1363 | 0.1543 | — |
+| Recall@1 | 0.0590 | 0.0703 | — |
 
 Run `make bench` to reproduce.
 

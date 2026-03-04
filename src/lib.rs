@@ -216,7 +216,7 @@ impl FastTextModel {
 #[allow(clippy::too_many_arguments)]
 #[pyo3(signature = (
     input, lr=0.1, dim=100, ws=5, epoch=5, min_count=1, min_count_label=0,
-    minn=0, maxn=0, neg=5, word_ngrams=1, loss="softmax", bucket=2000000,
+    minn=0, maxn=0, neg=5, word_ngrams=1, loss="softmax", bucket=0,
     thread=1, lr_update_rate=100, t=1e-4, label="__label__", verbose=2,
 ))]
 fn train_supervised(

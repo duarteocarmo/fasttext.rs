@@ -129,6 +129,9 @@ impl Dictionary {
     }
 
     pub fn compute_subwords(&self, word: &str) -> Vec<usize> {
+        if self.bucket == 0 {
+            return Vec::new();
+        }
         let mut subwords = Vec::new();
         let bounded = format!("<{}>", word);
         let chars: Vec<char> = bounded.chars().collect();
@@ -192,7 +195,7 @@ impl Dictionary {
             }
         }
 
-        if self.word_ngrams > 1 && !word_ids_for_ngrams.is_empty() {
+        if self.word_ngrams > 1 && self.bucket > 0 && !word_ids_for_ngrams.is_empty() {
             for i in 0..word_ids_for_ngrams.len() {
                 let mut h = word_ids_for_ngrams[i] as u64;
                 for &wid in &word_ids_for_ngrams
