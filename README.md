@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="900">
+  <img src="assets/fasttext-rs-logo.png" alt="fasttext.rs logo" width="500">
 </p>
 
 > [!WARNING]
