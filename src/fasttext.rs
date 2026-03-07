@@ -590,8 +590,9 @@ impl FastText {
 
         self.write_args(&mut writer)?;
         self.write_dict(&mut writer)?;
+        writer.write_u8(0).map_err(m)?; // quant flag for input
         self.write_matrix(&mut writer, &self.model.wi)?;
-        writer.write_u8(0).map_err(m)?;
+        writer.write_u8(0).map_err(m)?; // quant flag for output
         self.write_matrix(&mut writer, &self.model.wo)?;
 
         Ok(())
@@ -713,13 +714,16 @@ impl FastText {
 
         let args = Self::read_args(&mut reader)?;
         let dict = Self::read_dict(&mut reader, &args)?;
+        let qi = reader.read_u8().map_err(m)?;
+        if qi != 0 {
+            return Err("Quantized input matrices are not supported".to_string());
+        }
         let wi = Self::read_matrix(&mut reader)?;
 
-        let quant = reader.read_u8().map_err(m)?;
-        if quant != 0 {
-            return Err("Quantized models are not supported".to_string());
+        let qo = reader.read_u8().map_err(m)?;
+        if qo != 0 {
+            return Err("Quantized output matrices are not supported".to_string());
         }
-
         let wo = Self::read_matrix(&mut reader)?;
 
         let model_type = match args.model.as_str() {
